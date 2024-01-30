@@ -9,9 +9,9 @@
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
 	<groupId>MASTER_SI-SPRING-AZOUANEDjamila</groupId>
-	<artifactId>room-booking</artifactId>
+	<artifactId>event-space-booking</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<name>room-booking</name>
+	<name>event-space-booking</name>
 	<description>Mise en production - Déploiement vers le cloud</description>
 	<properties>
 		<java.version>11</java.version>

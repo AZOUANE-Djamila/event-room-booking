@@ -16,7 +16,7 @@ import dz.ibnrochd.master15.Models.Person;
 
 
 @RestController
-public class medicApiController {
+public class EventSpaceBookingApiController {
 
 	@Autowired
 	private IPersonService ipersonService;
