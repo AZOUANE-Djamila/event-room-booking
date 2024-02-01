@@ -3,16 +3,18 @@ package dz.ibnrochd.master15.Models;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.OneToMany;
-import javax.persistence.Table;
-import javax.persistence.Temporal;
-import javax.persistence.TemporalType;
-import javax.validation.constraints.NotNull;
+
+import jakarta.persistence.CascadeType;
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.persistence.OneToMany;
+import jakarta.persistence.Table;
+import jakarta.persistence.Temporal;
+import jakarta.persistence.TemporalType;
+import jakarta.validation.constraints.NotNull;
 
 import org.springframework.format.annotation.DateTimeFormat;
 
@@ -34,7 +36,7 @@ public class Person  {
     private String sexe;
 
     @Temporal(TemporalType.DATE)
-    @DateTimeFormat(pattern = "yyyy-mm-dd")
+    @DateTimeFormat(pattern = "yyyy-MM-dd") // Corrected date format
     @Column(name = "date_naissance", nullable = false)
     private Date dateNaissance;
 
@@ -44,11 +46,11 @@ public class Person  {
     @Column(name = "adresse", nullable = false, length = 255)
     private String adresse;
         
-    @OneToMany()//(mappedBy = "persons")
+    @OneToMany(mappedBy = "person", cascade = CascadeType.ALL)
     private List<Reservation> reservations;
     
-    @OneToMany()//(mappedBy = "persons")
-    private List<RendezVous> rendezVous = new ArrayList<>();
+    @OneToMany(mappedBy = "person", cascade = CascadeType.ALL)
+    private List<RoomType> rendezVous = new ArrayList<>();
     
     /////////////////////////////////////////////////////////
     
@@ -142,11 +144,11 @@ public class Person  {
 		this.reservations = reservations;
 	}
 
-	public List<RendezVous> getRendezVous() {
+	public List<RoomType> getRendezVous() {
 		return rendezVous;
 	}
 
-	public void setRendezVous(List<RendezVous> rendezVous) {
+	public void setRendezVous(List<RoomType> rendezVous) {
 		this.rendezVous = rendezVous;
 	}
 

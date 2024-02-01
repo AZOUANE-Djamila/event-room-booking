@@ -1,20 +1,22 @@
 package dz.ibnrochd.master15.Models;
 
 import java.util.Date;
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
-import javax.persistence.Table;
-import javax.persistence.Temporal;
-import javax.persistence.TemporalType;
+
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
+import jakarta.persistence.Table;
+import jakarta.persistence.Temporal;
+import jakarta.persistence.TemporalType;
+
 
 @Entity
-@Table(schema = "eventspace",name = "rendez_vous")
-public class RendezVous{
+@Table(schema = "eventspace",name = "room_type")
+public class RoomType{
 
 	@Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -25,20 +27,21 @@ public class RendezVous{
     private Date dateRdv;
 
     @ManyToOne()
-    @JoinColumn(name = "id_person", nullable = false)
-    private Person person;
+    @JoinColumn(name = "room_id", nullable = false)
+    private Room room;
+
+	private String type;
 
     //////////////////////////////////////////////
     
-    public RendezVous() {
+    public RoomType() {
 		
 	}
 
-	public RendezVous(long id, Date dateRdv, Person person) {
+	public RoomType(long id, String type) {
 		super();
 		this.id = id;
-		this.dateRdv = dateRdv;
-		this.person = person;
+		this.type = type;
 	}
 
 	///////////////////////////////////////////////
@@ -51,20 +54,14 @@ public class RendezVous{
 		this.id = id;
 	}
 
-	public Date getDateRdv() {
-		return dateRdv;
+
+
+	public String getType() {
+		return type;
 	}
 
-	public void setDateRdv(Date dateRdv) {
-		this.dateRdv = dateRdv;
-	}
-
-	public Person getPerson() {
-		return person;
-	}
-
-	public void setPerson(Person person) {
-		this.person = person;
+	public void setType(String type) {
+		this.type = type;
 	}
     
     

@@ -2,13 +2,16 @@ package dz.ibnrochd.master15.Models;
 import java.util.ArrayList;
 import java.util.List;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.OneToMany;
-import javax.persistence.Table;
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
+import jakarta.persistence.OneToMany;
+import jakarta.persistence.Table;
+
 
 @Entity
 @Table(schema = "eventspace", name = "room")
@@ -21,6 +24,10 @@ public class Room {
 
     @Column(name = "nom", nullable = false, length = 255)
     private String nom;
+    
+    @ManyToOne
+    @JoinColumn(name = "room_type_id")
+    private RoomType roomType;
 
 
     @OneToMany(mappedBy = "room")
@@ -32,10 +39,11 @@ public class Room {
 	
 	}
 
-	public Room(int id, String nom) {
+	public Room(int id, String nom, RoomType roomType) {
 		super();
 		this.id = id;
 		this.nom = nom;
+		this.roomType = roomType;
 	}
 	
 	///////////////////////////////////////
@@ -54,6 +62,14 @@ public class Room {
 
 	public void setNom(String nom) {
 		this.nom = nom;
+	}
+
+	public RoomType getRoomType() {
+		return roomType;
+	}
+
+	public void setRoomType(RoomType roomType) {
+		this.roomType = roomType;
 	}
 
 	public List<LigneReservation> getLigneReservations() {
